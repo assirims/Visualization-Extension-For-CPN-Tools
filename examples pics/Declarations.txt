@@ -1,0 +1,108 @@
+val n = 5;
+colset PH = index ph with 1..n;
+colset CS = index cs with 1..n;
+var p: PH;
+fun Chopsticks(ph(i)) = 
+1`cs(i) ++ 1`cs(if i=n then 1 else i+1);
+(* Setup Stage *)
+     fun st(p:PH)=
+     String.concat [ "",substring (PH.mkstr(p),0,2),  substring (PH.mkstr(p),3,1),""]
+     (* Stage *)
+          val s = Visualize.CreateCanvas("Stage")
+          val table = Visualize.DrawShap(s,"C",90,20,420,420,10,0,"#ffd8b2","#663300");
+          val _ = Visualize.DrawShap(s,"R",220,210,160,70,3,5,"#f4f4f4","#999999");
+          val _ = Visualize.DrawShap(s,"C",230,250,20,20,2,0,"#999999","#666666");
+          val _ = Visualize.DrawShap(s,"C",230,220,20,20,2,0,"#ff0000","#990000");
+          val _ = Visualize.Lable(s,255,255,"Unused Chopsticks","#000000");
+          val _ = Visualize.Lable(s,255,225,"Taken Chopsticks","#990000");
+     (* Philosophers *)
+          val ph1 = Visualize.DrawShap(s,"C",380,320,60,60,3,0,"#ccccff","#999999");
+          val ph2 = Visualize.DrawShap(s,"C",170,330,60,60,3,0,"#ccccff","#999999");
+          val ph3 = Visualize.DrawShap(s,"C",110,150,60,60,3,0,"#ccccff","#999999");
+          val ph4 = Visualize.DrawShap(s,"C",250,30,60,60,3,0,"#ccccff","#999999");
+          val ph5 = Visualize.DrawShap(s,"C",420,130,60,60,3,0,"#ccccff","#999999");
+          val _ = Visualize.Lable(s,395,305,"Ph(1)","#000000");
+          val p1t = Visualize.Lable(s,395,355,"Think","#000000");
+          val p1e = Visualize.Lable(s,395,355,"\nEat","#ccccff");
+          val _ = Visualize.Lable(s,185,315,"Ph(2)","#000000");
+          val p2t = Visualize.Lable(s,185,365,"Think","#000000");
+          val p2e = Visualize.Lable(s,185,365,"\nEat","#ccccff");
+          val _ = Visualize.Lable(s,125,135,"Ph(3)","#000000");
+          val p3t = Visualize.Lable(s,125,185,"Think","#000000");
+          val p3e = Visualize.Lable(s,125,185,"\nEat","#ccccff");
+          val p_ = Visualize.Lable(s,265,95,"Ph(4)","#000000");
+          val p4t = Visualize.Lable(s,265,65,"Think","#000000");
+          val p4e = Visualize.Lable(s,265,65,"\nEat","#ccccff");
+          val _ = Visualize.Lable(s,435,115,"Ph(5)","#000000");
+          val p5t = Visualize.Lable(s,435,165,"Think","#000000");
+          val p5e = Visualize.Lable(s,435,165,"\nEat","#ccccff");
+     (* Chopsticks *)
+          val cs1 = Visualize.DrawShap(s,"C",300,370,20,20,2,0,"#999999","#666666");
+          val cs2 = Visualize.DrawShap(s,"C",150,260,20,20,2,0,"#999999","#666666");
+          val cs3 = Visualize.DrawShap(s,"C",180,100,20,20,2,0,"#999999","#666666");
+          val cs4 = Visualize.DrawShap(s,"C",380,80,20,20,2,0,"#999999","#666666");
+          val cs5 = Visualize.DrawShap(s,"C",440,260,20,20,2,0,"#999999","#666666");
+     fun ph_eat(p:PH)=
+     
+     case st(p) of
+     "ph1" => (Visualize.ChangeColor(s,"C",ph1,"#cc3300","#990033");
+                      Visualize.ChangeLabelColor(s,p1e,"#ffffff");
+                      Visualize.ChangeLabelColor(s,p1t,"#cc3300");
+                      Visualize.ChangeColor(s,"C",cs1,"#ff0000","#990000");
+                      Visualize.ChangeColor(s,"C",cs5,"#ff0000","#990000"))
+     
+     | "ph2" => (Visualize.ChangeColor(s,"C",ph2,"#cc3300","#990033");
+                        Visualize.ChangeLabelColor(s,p2e,"#ffffff");
+                        Visualize.ChangeLabelColor(s,p2t,"#cc3300");
+                        Visualize.ChangeColor(s,"C",cs1,"#ff0000","#990000");
+                        Visualize.ChangeColor(s,"C",cs2,"#ff0000","#990000"))
+     
+     | "ph3" => (Visualize.ChangeColor(s,"C",ph3,"#cc3300","#990033");
+                        Visualize.ChangeLabelColor(s,p3e,"#ffffff");
+                        Visualize.ChangeLabelColor(s,p3t,"#cc3300");
+                        Visualize.ChangeColor(s,"C",cs2,"#ff0000","#990000");
+                        Visualize.ChangeColor(s,"C",cs3,"#ff0000","#990000"))
+     
+     | "ph4" => (Visualize.ChangeColor(s,"C",ph4,"#cc3300","#990033");
+                        Visualize.ChangeLabelColor(s,p4e,"#ffffff");
+                        Visualize.ChangeLabelColor(s,p4t,"#cc3300");
+                        Visualize.ChangeColor(s,"C",cs3,"#ff0000","#990000");
+                        Visualize.ChangeColor(s,"C",cs4,"#ff0000","#990000"))
+     
+     | "ph5" => (Visualize.ChangeColor(s,"C",ph5,"#cc3300","#990033");
+                        Visualize.ChangeLabelColor(s,p5e,"#ffffff");
+                        Visualize.ChangeLabelColor(s,p5t,"#cc3300");
+                        Visualize.ChangeColor(s,"C",cs4,"#ff0000","#990000");
+                        Visualize.ChangeColor(s,"C",cs5,"#ff0000","#990000"));
+     fun ph_think(p:PH)=
+     
+     case st(p) of
+     "ph1" => (Visualize.ChangeColor(s,"C",ph1,"#ccccff","#999999");
+                      Visualize.ChangeLabelColor(s,p1e,"#ccccff");
+                      Visualize.ChangeLabelColor(s,p1t,"#000000");
+                      Visualize.ChangeColor(s,"C",cs1,"#999999","#666666");
+                      Visualize.ChangeColor(s,"C",cs5,"#999999","#666666"))
+     
+     | "ph2" => (Visualize.ChangeColor(s,"C",ph2,"#ccccff","#999999");
+                        Visualize.ChangeLabelColor(s,p2e,"#ccccff");
+                        Visualize.ChangeLabelColor(s,p2t,"#000000");
+                        Visualize.ChangeColor(s,"C",cs1,"#999999","#666666");
+                        Visualize.ChangeColor(s,"C",cs2,"#999999","#666666"))
+     
+     | "ph3" => (Visualize.ChangeColor(s,"C",ph3,"#ccccff","#999999");
+                        Visualize.ChangeLabelColor(s,p3e,"#ccccff");
+                        Visualize.ChangeLabelColor(s,p3t,"#000000");
+                        Visualize.ChangeColor(s,"C",cs2,"#999999","#666666");
+                        Visualize.ChangeColor(s,"C",cs3,"#999999","#666666"))
+     
+     | "ph4" => (Visualize.ChangeColor(s,"C",ph4,"#ccccff","#999999");
+                        Visualize.ChangeLabelColor(s,p4e,"#ccccff");
+                        Visualize.ChangeLabelColor(s,p4t,"#000000");
+                        Visualize.ChangeColor(s,"C",cs3,"#999999","#666666");
+                        Visualize.ChangeColor(s,"C",cs4,"#999999","#666666"))
+     
+     | "ph5" => (Visualize.ChangeColor(s,"C",ph5,"#ccccff","#999999");
+                        Visualize.ChangeLabelColor(s,p5e,"#ccccff");
+                        Visualize.ChangeLabelColor(s,p5t,"#000000");
+                        Visualize.ChangeColor(s,"C",cs4,"#999999","#666666");
+                        Visualize.ChangeColor(s,"C",cs5,"#999999","#666666"));

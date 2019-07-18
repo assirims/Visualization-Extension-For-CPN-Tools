@@ -1,0 +1,19 @@
+(* Standard priorities *)
+     val P_HIGH = 100;
+     val P_NORMAL = 1000;
+     val P_LOW = 10000;
+(* Standard declarations *)
+     colset UNIT = unit;
+     colset BOOL = bool;
+     colset INT = int;
+     colset INTINF = intinf;
+     colset TIME = time;
+     colset REAL = real;
+     colset STRING = string;
+(* Visualization *)
+     val c = Visualize.CreateCanvas("Traffic Light")
+     val _ = Visualize.DrawShap(c,"R",200,50,120,320,4,0,"#666666","#000000");
+     val green = Visualize.DrawShap(c,"C",220,70,80,80,4,0,"#003300","#000000");
+     val Yellow = Visualize.DrawShap(c,"C",220,170,80,80,4,0,"#666600","#000000");
+     val red = Visualize.DrawShap(c,"C",220,270,80,80,4,0,"#660000","#000000");
+     val _ = Visualize.Lable(c,150,400,"      A traffic light as an example of \n Visualization Extension for CPN Tools","#000000");
