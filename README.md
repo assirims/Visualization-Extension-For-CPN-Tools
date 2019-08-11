@@ -39,5 +39,3 @@ All examples are downloadable: [Dining Philosophers](https://drive.google.com/fi
 
 • Useful Links:
 - CPN Tools: http://cpntools.org
--
--
